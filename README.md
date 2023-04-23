@@ -6,3 +6,4 @@ Hice una aplicacion para poder cargar en el sistema recetas de cocina
 
 ## LINK DE ACCESO AL VIDEO DE YOUTUBE
 ingresar a este link para visualizar el video:
+https://www.youtube.com/watch?v=R3WS22IqmgM
