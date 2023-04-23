@@ -19,6 +19,7 @@ from AppRecetas.views import (index, RecetaList, RecetaDetail, RecetaCreate, Rec
 
 urlpatterns = [
     path('',index, name="index"),
+    path('admin/', admin.site.urls),
     path('receta/list/', RecetaList.as_view(), name="receta-list"),
     path('receta/<pk>/detail', RecetaDetail.as_view(), name="receta-detail"),
     path('receta/create', RecetaCreate.as_view(), name="receta-create"),

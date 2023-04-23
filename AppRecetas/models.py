@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User #lo importo para hacer la parte de publisher
+from django.contrib.auth.models import User
 
 class Receta(models.Model):
     nombre_receta = models.CharField(max_length=30)

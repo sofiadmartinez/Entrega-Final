@@ -1,14 +1,13 @@
-<!-- es un formulario sin campos porque lo unico que queremos es un boton -->
 {% extends "AppRecetas/base.html" %}
+
 {% block main %}
-<h1> Estas seguro que queres borrar el post {{object.heading}}?</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Borrar">
-</form>
-
+<p>
+    {{object.descripcion_breve_receta}}
+    <br>
+    {{object.lista_de_ingredientes}}
+    <br>
+    {{object.pasos_a_seguir}}
+    <br>
+    <a href="{% url 'receta-list' %}"> volver</a>
+</p>
 {% endblock %}
-
-<!-- si en lugar de object.heading pongo post.heading tambien me lo va a tomar -->
-

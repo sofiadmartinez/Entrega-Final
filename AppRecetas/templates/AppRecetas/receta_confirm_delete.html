@@ -1,7 +1,6 @@
-<!-- es un formulario sin campos porque lo unico que queremos es un boton -->
 {% extends "AppRecetas/base.html" %}
 {% block main %}
-<h1> Estas seguro que queres borrar el post {{object.heading}}?</h1>
+<h1> Estas seguro que queres borrar la receta? {{object.heading}}?</h1>
 <form method="POST">
     {% csrf_token %}
     {{form}}
@@ -9,6 +8,3 @@
 </form>
 
 {% endblock %}
-
-<!-- si en lugar de object.heading pongo post.heading tambien me lo va a tomar -->
-

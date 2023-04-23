@@ -4,7 +4,7 @@ from AppRecetas.models import Receta
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView,LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin #esto se usa para poder restringir ciertas partes de una vista, para un usuario que no esta registrado
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     return render(request, "AppRecetas/index.html")
