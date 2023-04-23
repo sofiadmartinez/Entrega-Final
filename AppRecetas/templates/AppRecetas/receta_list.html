@@ -1,0 +1,25 @@
+{% extends "AppRecetas/base.html" %}
+{% block main %}<ul>
+    <h1> Lista de Posts </h1>
+    {% for post in object_list %}
+    <li>
+        {{post}}
+        <a href="{% url 'receta-detail' post.id %}" > Detalle</a> <!-- todo lo que se agrega despues del post es para que haya un boton al lado del tipo link que dice Detalle-->
+        {% if user.is_authenticated %}
+            <a href="{% url 'receta-update' post.id %}" > Actualizar</a>
+            <a href="{% url 'receta-delete' post.id %}" > Borrar</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+
+<!-- href=" url 'post-detail' post id"
+href es una funcion
+el primer argumento es post detail
+el segundo argumento es post id
+el segundo argumento inyecta el id en la url de post detail -->
+ 
