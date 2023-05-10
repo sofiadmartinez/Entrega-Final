@@ -16,7 +16,7 @@
               <div class="carousel-caption text-start">
                 <h1>{{receta.nombre_receta}}</h1>
                 <p>{{receta.descripcion_breve_receta}}</p>
-                <p><a class="btn btn-lg btn-secondary" href="https://getbootstrap.com/docs/5.0/examples/carousel/#">VER MAS</a></p>
+                <p><a class="btn btn-lg btn-secondary" href="{% url 'receta-detail' receta.id %}">VER MAS</a></p>
               </div>
             </div>
           </div>
@@ -45,21 +45,18 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
 
-    
-      <div class="col-lg-4">
-        <img src="./curso_coder_house_files/puente-corrientes-resistencia.jpeg" height="144" width="144">
-        <h2>El puente</h2>
-        <p>vistas lindas del rio</p>
-        <p><a class="btn btn-secondary" href="https://getbootstrap.com/docs/5.0/examples/carousel/#">View details »</a></p>
-      </div><!-- /.col-lg-4 -->
-    
-      <div class="col-lg-4">
-        <img src="./curso_coder_house_files/cataratas-del-iguazu-misiones.jpeg" height="144" width="144">
-        <h2>Las cataratas</h2>
-        <p>un destino imperdible</p>
-        <p><a class="btn btn-secondary" href="https://getbootstrap.com/docs/5.0/examples/carousel/#">View details »</a></p>
-      </div><!-- /.col-lg-4 -->
-      
+      {% for receta in recetas %}
+        <div class="col-lg-4">
+          <img src="{{ receta.imagen.url }}" height="144" width="144">
+          <h2>{{receta.nombre_receta}}</h2>
+          <p>{{receta.descripcion_breve_receta}}</p>
+          <h4>{{receta.publisher.username}}</h4>
+          <p><a class="btn btn-secondary" href="{% url 'receta-detail' receta.id %}">Mira la receta completa! »</a></p>
+        </div><!-- /.col-lg-4 -->
+      {% endfor %}
+
+
+
     </div><!-- /.row -->
 
 
