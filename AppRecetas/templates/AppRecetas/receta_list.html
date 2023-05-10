@@ -1,7 +1,12 @@
 {% extends "AppRecetas/base.html" %}
 {% block main %}<ul>
     <h1> Lista de Recetas </h1>
-    {% for post in object_list %}
+
+    {% if not posts %}
+        <h2> Aun no hay recetas cargadas</h2>
+    {% endif %}
+
+    {% for post in posts %}
     <li>
         {{post}}
         <a href="{% url 'receta-detail' post.id %}" > Detalle</a> <!-- todo lo que se agrega despues del post es para que haya un boton al lado del tipo link que dice Detalle-->

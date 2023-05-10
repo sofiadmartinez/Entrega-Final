@@ -1,0 +1,21 @@
+{% extends "AppRecetas/base.html" %}
+{% block main %}<ul>
+    <h1> Lista de Recetas </h1>
+
+    {% if not mensajes %}
+        <h2> Aun no tienes mensajes</h2>
+    {% endif %}
+
+    {% for mensaje in mensajes %}
+    <li>
+        <p>{{mensaje.email}}</p>
+        <p>{{mensaje.mensaje}}</p>
+        {% if user.is_authenticated and mensaje.destinatario == user %}
+            <a href="{% url 'mensaje-delete' mensaje.id %}" > Borrar</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+

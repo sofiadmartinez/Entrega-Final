@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from AppRecetas.models import Receta, Profile
+from AppRecetas.models import Receta, Profile, Mensaje
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+def about(request):
+    return render (request, "AppRecetas/about.html")
 
 def index(request):
     context = {
@@ -13,7 +16,8 @@ def index(request):
     return render(request, "AppRecetas/index.html", context)
 
 class RecetaList(ListView):
-    model = Receta 
+    model = Receta
+    context_object_name="posts"
 
 class RecetaDetail(DetailView):
     model = Receta 
@@ -67,3 +71,24 @@ class ProfileUpdate(UpdateView):
 class ProfileCreate(CreateView):
     model = Profile
     fields = '__all__'
+
+class MensajeCreate(CreateView):
+    model = Mensaje
+    fields = '__all__'
+    success_url = reverse_lazy("receta-list")
+
+class MensajeList(LoginRequiredMixin,ListView):
+    model = Mensaje
+    context_object_name= "mensajes"    
+
+    def get_queryset(self):
+        return Mensaje.objects.filter(destinatario=self.request.user.id).all()
+
+class MensajeDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Mensaje
+    success_url = reverse_lazy("mensaje-list")
+
+    def test_func(self):
+        user_id = self.request.user.id
+        mensaje_id = self.kwargs.get('pk')
+        return Mensaje.objects.filter(destinatario=user_id).exists()
