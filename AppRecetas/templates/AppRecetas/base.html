@@ -64,7 +64,7 @@
             <a class="nav-link active" aria-current="page" href="{% url 'receta-create' %}">Crear Nueva Receta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'receta-list' %}">Mis Recetas</a>
+            <a class="nav-link" href="{% url 'receta-list' %}">Recetas</a>
           </li>
           {% if user.is_authenticated %} <!-- Si el usuario se logueo te va a aparecer el siguiente boton-->
             <li class="nav-item">

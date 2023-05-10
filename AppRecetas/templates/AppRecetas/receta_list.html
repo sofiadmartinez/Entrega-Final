@@ -5,7 +5,7 @@
     <li>
         {{post}}
         <a href="{% url 'receta-detail' post.id %}" > Detalle</a> <!-- todo lo que se agrega despues del post es para que haya un boton al lado del tipo link que dice Detalle-->
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and post.publisher == user %}
             <a href="{% url 'receta-update' post.id %}" > Actualizar</a>
             <a href="{% url 'receta-delete' post.id %}" > Borrar</a>
         {% endif %}

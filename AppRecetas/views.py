@@ -4,7 +4,7 @@ from AppRecetas.models import Receta
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView,LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 def index(request):
     return render(request, "AppRecetas/index.html")
@@ -15,19 +15,46 @@ class RecetaList(ListView):
 class RecetaDetail(DetailView):
     model = Receta 
 
-class RecetaCreate(LoginRequiredMixin, CreateView):
+# class RecetaCreate(LoginRequiredMixin, CreateView):
+#     model = Receta
+#     success_url = reverse_lazy("receta-list")
+#     fields = '__all__'
+    
+# class RecetaUpdate(LoginRequiredMixin, UpdateView):
+#     model = Receta
+#     success_url = reverse_lazy("receta-list")
+#     fields = '__all__'
+
+class RecetaCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Receta
     success_url = reverse_lazy("receta-list")
     fields = '__all__'
     
-class RecetaUpdate(LoginRequiredMixin, UpdateView):
+class RecetaUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Receta
     success_url = reverse_lazy("receta-list")
     fields = '__all__'
 
-class RecetaDelete(LoginRequiredMixin, DeleteView):
+    def test_func(self):
+        user_id = self.request.user.id
+        post_id = self.kwargs.get('pk')
+        return Receta.objects.filter(publisher=user_id, id=post_id).exists()
+    
+    def handle_no_permission(self):
+        return render(self.request, "AppRecetas/not_found.html")
+
+
+class RecetaDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Receta
     success_url = reverse_lazy("receta-list")  
+
+    def test_func(self):
+        user_id = self.request.user.id
+        post_id = self.kwargs.get('pk')
+        return Receta.objects.filter(publisher=user_id, id=post_id).exists()
+    
+    def handle_no_permission(self):
+        return render(self.request, "AppRecetas/not_found.html")
 
 class SignUp(CreateView):
     form_class = UserCreationForm
