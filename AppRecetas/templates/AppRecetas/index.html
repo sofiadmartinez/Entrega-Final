@@ -62,38 +62,25 @@
 
     <!-- START THE FEATURETTES -->
 
-    
+   
     <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">El puente</h2>
-        <p class="lead">vistas lindas del rio</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        
-          <img src="./curso_coder_house_files/puente-corrientes-resistencia.jpeg" height="400" width="400">
-        
+    {% for receta in recetas %}
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading">{{receta.nombre_receta}}</h2>
+          <p class="lead">{{receta.descripcion_breve_receta}}</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          
+            <img src="{{receta.imagen.url}}" height="300" width="300">
+          
+
+        </div>
+      
 
       </div>
-    </div>
-
-    
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Las cataratas</h2>
-        <p class="lead">un destino imperdible</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        
-          <img src="./curso_coder_house_files/cataratas-del-iguazu-misiones.jpeg" height="400" width="400">
-        
-
-      </div>
-    </div>
-
+    {% endfor %}
     
 
 
@@ -102,10 +89,6 @@
   </div><!-- /.container -->
 
 
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="https://getbootstrap.com/docs/5.0/examples/carousel/#">Volver arriba </a></p>
-    <p>© 2017–2021 Company, Inc. · <a href="https://getbootstrap.com/docs/5.0/examples/carousel/#">Privacy</a> · <a href="https://getbootstrap.com/docs/5.0/examples/carousel/#">Terms</a></p>
-  </footer>
+
 </main>
 {% endblock %}
