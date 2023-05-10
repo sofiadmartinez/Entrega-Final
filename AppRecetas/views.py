@@ -25,7 +25,7 @@ class RecetaDetail(DetailView):
 #     success_url = reverse_lazy("receta-list")
 #     fields = '__all__'
 
-class RecetaCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class RecetaCreate(LoginRequiredMixin, CreateView):
     model = Receta
     success_url = reverse_lazy("receta-list")
     fields = '__all__'

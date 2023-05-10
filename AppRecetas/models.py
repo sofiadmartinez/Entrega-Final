@@ -7,6 +7,7 @@ class Receta(models.Model):
     lista_de_ingredientes = models.CharField(max_length=100)
     pasos_a_seguir = models.CharField(max_length=100)
     publisher = models.ForeignKey(to=User, on_delete = models.CASCADE, related_name="publisher")
+    imagen = models.ImageField(upload_to="posts", null=True, blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.nombre_receta}"

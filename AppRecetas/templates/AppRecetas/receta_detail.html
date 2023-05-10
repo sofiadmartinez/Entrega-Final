@@ -2,6 +2,10 @@
 
 {% block main %}
 <p>
+    <h1>{{object.nombre_receta}}</h1>
+    <br>
+    <img src="{{ object.imagen.url }}" width="320px" height="100%">
+    <br>
     {{object.descripcion_breve_receta}}
     <br>
     {{object.lista_de_ingredientes}}
