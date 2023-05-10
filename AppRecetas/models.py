@@ -11,3 +11,9 @@ class Receta(models.Model):
 
     def __str__(self):
         return f"{self.id} - {self.nombre_receta}"
+
+class Profile(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE, related_name="profile")
+    instagram = models.CharField(max_length=100)
+    imagen = models.ImageField(upload_to="profiles", null=True, blank=True) #Si no logro que funcione el CSS en la linea 57, entnonces le borro el null y el blank asi me obliga a poner una foto
+    

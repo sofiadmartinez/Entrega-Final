@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from AppRecetas.models import Receta
+from AppRecetas.models import Receta, Profile
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView,LogoutView
@@ -14,16 +14,6 @@ class RecetaList(ListView):
 
 class RecetaDetail(DetailView):
     model = Receta 
-
-# class RecetaCreate(LoginRequiredMixin, CreateView):
-#     model = Receta
-#     success_url = reverse_lazy("receta-list")
-#     fields = '__all__'
-    
-# class RecetaUpdate(LoginRequiredMixin, UpdateView):
-#     model = Receta
-#     success_url = reverse_lazy("receta-list")
-#     fields = '__all__'
 
 class RecetaCreate(LoginRequiredMixin, CreateView):
     model = Receta
@@ -67,3 +57,8 @@ class Login(LoginView):
 class Logout(LogoutView):
     template_name = 'registration/logout.html'
 
+class ProfileUpdate(UpdateView):
+    model = Profile
+    fields = '__all__'
+
+#falta hacer el ProfileCreate. Es exactamente el mismo que el de arriba
