@@ -1,36 +1,27 @@
 {% extends "AppRecetas/base.html" %}
+
 {% block main %}
 <main>
-
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       
-        
-          <div class="carousel-item active">
-              <img src="./curso_coder_house_files/puente-corrientes-resistencia.jpeg">
+        {% for receta in recetas%}
+          {% if forloop.first %}      
+            <div class="carousel-item active">
+          {% else %}
+            <div class="carousel-item">
+          {% endif %}
+              <img src="{receta.imagen.url}">
             <div class="container">
               <div class="carousel-caption text-start">
-                <h1>Puente Gral. Belgrano</h1>
-                <p>Une  Chaco con Corrientes</p>
-                <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/5.0/examples/carousel/#">Sign up today</a></p>
+                <h1>{{receta.nombre_receta}}</h1>
+                <p>{{receta.descripcion_breve_receta}}</p>
+                <p><a class="btn btn-lg btn-secondary" href="https://getbootstrap.com/docs/5.0/examples/carousel/#">VER MAS</a></p>
               </div>
             </div>
           </div>
-        
-      
-        
-        <div class="carousel-item">
-          <img src="./curso_coder_house_files/cataratas-del-iguazu-misiones.jpeg">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Cataratas del Iguazu</h1>
-              <p>Maravilla Natural</p>
-              <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/5.0/examples/carousel/#">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        
-      
+        {% endfor %}      
+
       
       
     </div>

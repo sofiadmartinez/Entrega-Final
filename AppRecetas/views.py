@@ -7,7 +7,10 @@ from django.contrib.auth.views import LoginView,LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 def index(request):
-    return render(request, "AppRecetas/index.html")
+    context = {
+        "recetas": Receta.objects.all()
+    }
+    return render(request, "AppRecetas/index.html", context)
 
 class RecetaList(ListView):
     model = Receta 
@@ -61,4 +64,6 @@ class ProfileUpdate(UpdateView):
     model = Profile
     fields = '__all__'
 
-#falta hacer el ProfileCreate. Es exactamente el mismo que el de arriba
+class ProfileCreate(CreateView):
+    model = Profile
+    fields = '__all__'
